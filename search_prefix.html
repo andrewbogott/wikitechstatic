@@ -1,0 +1,34 @@
+<!-- Inserted lunr search bits -->
+  <script src="/libs/lunr/lunr.min.js"></script>
+  <script src="/libs/lunr/lunr_index.js"></script>
+  <script src="/libs/lunr/lunrclient.min.js"></script>
+<script>
+  function respondToSearchboxClick(){
+    var idx = lunr.Index.load(LUNR_DATA)
+
+    var query = document.querySelector("#search-box").value
+    var results = idx.search(query)
+    if(results.length>0) {
+       document.querySelector('#lunrsearchresults').innerHTML = ""
+       for (var i = 0; i < results.length; i++) {
+        var ref = results[i]['ref'];
+        var url = PREVIEW_LOOKUP[ref]['l'];
+        var title = PREVIEW_LOOKUP[ref]['t'];
+        var preview = PREVIEW_LOOKUP[ref]['p'];
+        document.querySelector('#lunrsearchresults').innerHTML = document.querySelector('#lunrsearchresults').innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</a>" + "</span><br /><span class='body'>"+ preview +"</span><br /><span class='url'>"+ url +"</span></li>";
+      }
+    } else {
+      document.querySelector('#lunrsearchresults').innerHTML = "<li class='lunrsearchresult'>No results found...</li>";
+    }
+  }
+</script>
+<div id="app">
+  <label for="search-box">Search wikitech-static:</label> 
+  <input type="text" id="search-box">
+  <button onclick="respondToSearchboxClick()">Search</button>
+</div>
+<div>
+  <ul id='lunrsearchresults'></ul>
+</div>
+<!-- End of lunr search bits -->
+

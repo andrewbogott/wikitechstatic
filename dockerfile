@@ -19,7 +19,6 @@ RUN httrack --update \
     -wikitech.wikimedia.org/wiki/Nova_Resource:* \
     -wikitech.wikimedia.org/w/index.php?title=Special \
     -*Special:* \
-    -*Portal:* \
     -*Nova_Resource:* \
     -*oldid=* \
     -*action=* \

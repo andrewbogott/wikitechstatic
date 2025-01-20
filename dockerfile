@@ -42,8 +42,13 @@ COPY --from=httrack /app/wikitech.wikimedia.org /usr/share/nginx/html
 COPY --from=node /app/node_modules/lunr /usr/share/nginx/html/libs/lunr
 COPY --from=node /app/lunr_index.js /usr/share/nginx/html/libs/lunr/lunr_index.js
 COPY search_prefix.html /app
-RUN find /usr/share/nginx/html/wiki -name "*.html" -exec sed -i 1r/app/search_prefix.html {} \;
 
 # A bit of site branding:
 COPY wikitechstaticicon.svg /usr/share/nginx/html/static/images/icons/wikitech.svg
 COPY wikitech-static-wordmark.svg /usr/share/nginx/html/static/images/mobile/copyright/wikitech-wordmark.svg
+
+# Insert search bar on every page (expensive!)
+# RUN find /usr/share/nginx/html/wiki -name "*.html" -exec sed -i 1r/app/search_prefix.html {} \;
+
+# Insert search bar only on main page
+RUN sed -i 1r/app/search_prefix.html /usr/share/nginx/html/wiki/Main_Page.html

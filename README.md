@@ -46,3 +46,5 @@ In an attempt to keep the search index a modest size, I've excluded
 several page types from the index, e.g. pages marked as obsolete. This
 is accomplised via unsophisticated checks in the findHtml() function in
 build_index.js
+
+sudo docker run -it --rm -d -p 80:80 --name wts <image id>

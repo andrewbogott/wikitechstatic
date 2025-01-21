@@ -4,6 +4,7 @@ include:
 
 stages:
   - one
+  - two
 
 build:
   stage: one
@@ -12,3 +13,12 @@ build:
   variables:
     BUILD_CONFIG: dockerfile
     BUILD_VARIANT: ""
+    CI_COMMIT_TAG: latest
+
+push:
+  stage: two
+  variables:
+      IMAGE_TAG: $REGISTRY_IMAGE:latest
+  script:
+      echo "$QUAY_TOKEN" | docker login $DOCKER_REGISTRY -u $QUAY_USER --password-stdin
+      docker push $IMAGE_TAG

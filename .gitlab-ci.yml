@@ -9,5 +9,5 @@ test:
   stage: one
   extends: .kokkuri:build-image
   variables:
-    BUILD_CONFIG: Dockerfile
+    BUILD_CONFIG: dockerfile
     BUILD_VARIANT: ""

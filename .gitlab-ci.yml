@@ -5,8 +5,9 @@ include:
 stages:
   - one
 
-test:
+build:
   stage: one
+  timeout: 8 hours
   extends: .kokkuri:build-image
   variables:
     BUILD_CONFIG: dockerfile

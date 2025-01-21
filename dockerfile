@@ -7,6 +7,7 @@ RUN apt-get install -y httrack=3.49.4-1
 WORKDIR /app
 RUN httrack --update \
     --update \
+    -F "httrack building wikitech-static" \
     --keep-alive \
     --search-index \
     -#L99999990 \

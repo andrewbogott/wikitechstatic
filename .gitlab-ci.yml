@@ -3,22 +3,17 @@ include:
     file: 'includes/images.yaml'
 
 stages:
-  - one
-  - two
+  - publish-build
 
-build:
-  stage: one
-  timeout: 8 hours
-  extends: .kokkuri:build-image
+publish-build:
+  stage: publish-build
+  extends: .kokkuri:build-and-publish-image
   variables:
     BUILD_CONFIG: dockerfile
     BUILD_VARIANT: ""
-    CI_COMMIT_TAG: latest
-
-push:
-  stage: two
-  variables:
-      IMAGE_TAG: $REGISTRY_IMAGE:latest
-  script:
-      echo "$QUAY_TOKEN" | docker login $DOCKER_REGISTRY -u $QUAY_USER --password-stdin
-      docker push $IMAGE_TAG
+    KOKKURI_REGISTRY_PUBLIC: $DOCKER_REGISTRY
+    KOKKURI_REGISTRY_INTERNAL: $DOCKER_REGISTRY
+    KOKKURI_REGISTRY_USER: $QUAY_USER
+    KOKKURI_REGISTRY_PASSWORD: $QUAY_TOKEN
+    PUBLISH_IMAGE_NAME: $REGISTRY_IMAGE
+    PUBLISH_IMAGE_TAG: latest

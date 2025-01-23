@@ -10,6 +10,7 @@ publish-build:
   extends: .kokkuri:build-and-publish-image
   timeout: 8 hours
   variables:
+    KUBERNETES_POD_ANNOTATIONS_1: "pod-cleanup.gitlab.com/ttl=${CI_JOB_TIMEOUT}s"
     BUILD_CONFIG: dockerfile
     BUILD_VARIANT: ""
     KOKKURI_REGISTRY_PUBLIC: $DOCKER_REGISTRY

@@ -10,7 +10,7 @@ RUN httrack --update \
     -F "httrack building wikitech-static" \
     --keep-alive \
     --search-index \
-    -#L50 \
+    -#L99999990 \
     --connection-per-second=5000 \
     --sockets=99 \
     --max-rate=1000000000 \

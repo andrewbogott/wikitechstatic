@@ -8,8 +8,8 @@ stages:
 publish-build:
   stage: publish-build
   extends: .kokkuri:build-and-publish-image
+  timeout: 8 hours
   variables:
-    timeout: 8 hours
     BUILD_CONFIG: dockerfile
     BUILD_VARIANT: ""
     KOKKURI_REGISTRY_PUBLIC: $DOCKER_REGISTRY

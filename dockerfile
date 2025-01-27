@@ -6,7 +6,7 @@ RUN apt-get install -y httrack=3.49.4-1
 
 WORKDIR /app
 # If there are recent changes on wikitech, this will modify a local
-#  file and bust the cache, forcing htttrack to run.
+#  file and bust the cache, forcing httrack to run.
 ADD https://wikitech-static.wikimedia.org/wiki/Special:RecentChanges?&limit=50&days=7&enhanced=1&urlversion=2
 
 RUN httrack --update \
